@@ -3,13 +3,13 @@
 // @File (label="destination directory",style="directory") dir2
 // @String (label= "Save as filetype...", choices = {".ome.tif", ".tif", ".png"}) tgt_suffix
 
-
-//--------------------------------------
+setBatchMode(true);
+//---------------------------------------------------------------------------------
 // This FIJI script divides/crops the already open image into multiple "sub-" images.
 // The user can define into how many rows and columns the image will be split,
 // the final filetype and the directory where the files will be saved.
 // This script has been written by Etienne Schmelzer for Benjamin Sellner.
-// --------------------------------------
+// ---------------------------------------------------------------------------------
 
 // the function takes the arguments dir2 -which corresponds the target directory
 // for the "sub-images",the desired file-ending (tgt_suffix) as well as
