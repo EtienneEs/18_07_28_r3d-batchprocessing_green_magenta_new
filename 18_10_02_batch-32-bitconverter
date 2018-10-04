@@ -105,28 +105,28 @@ function batchprocesser(infiletype, tgt_suffix, dir1, dir2) {
 	    	all = newArray(nImages);
 
 	    	for (k=0; k < nImages; k++) {
-	            selectImage(k+1);
-	            all[k] = getImageID;
-	            title = getTitle();
-	            print("This is the title" + title);
-	            title = replace(title,infiletype,"");
-	            title = replace(title," ","_");
-	            print("saving file..."+ title);
-							// -------------------- put in functions and processing below -------------------
+					selectImage(k+1);
+	        all[k] = getImageID;
+	        title = getTitle();
+	        print("This is the title" + title);
+	        title = replace(title,infiletype,"");
+	        title = replace(title," ","_");
+	        print("saving file..."+ title);
+					// -------------------- put in functions and processing below -------------------
 
-							print("Your function is about to be executed");
+					print("Your function is about to be executed");
 
-							//desiredFunction
-							bitConverter();
+					//desiredFunction
+					bitConverter();
 
-	            // ------------------- now the files will be saved -------------------
-	            outFile = dir2 +File.separator+ title + tgt_suffix;
-	            print(outFile);
+	        // ------------------- now the files will be saved -------------------
+	        outFile = dir2 +File.separator+ title + tgt_suffix;
+	        print(outFile);
 	    		run("Bio-Formats Exporter", "save=[" + outFile + "]");
-	            print("Done");
+	        print("Done");
 	    	}
-			//break
-	        run("Close All");  // close all images to free the memory
+				//break
+	      run("Close All");  // close all images to free the memory
 
 	    }
 	//break
