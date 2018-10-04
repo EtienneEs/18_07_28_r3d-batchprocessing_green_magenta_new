@@ -112,10 +112,12 @@ function batchprocesser(infiletype, tgt_suffix, dir1, dir2) {
 	            title = replace(title,infiletype,"");
 	            title = replace(title," ","_");
 	            print("saving file..."+ title);
-				// -------------------- put in functions and processing below -------------------
-				print("hello");
-				//desiredFunction
-				bitConverter();
+							// -------------------- put in functions and processing below -------------------
+
+							print("Your function is about to be executed");
+
+							//desiredFunction
+							bitConverter();
 
 	            // ------------------- now the files will be saved -------------------
 	            outFile = dir2 +File.separator+ title + tgt_suffix;
