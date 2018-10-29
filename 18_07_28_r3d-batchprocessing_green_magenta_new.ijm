@@ -69,7 +69,8 @@ for (i=0; i<list.length; i++) {
 				if (skip==true) {
 					waitForUser("Please select area");
 					run("Crop");
-					print(title_max + "has been cropped");
+					print(title_max + " has been cropped");
+					run("Make Composite", "display=Composite");
 				}
 
 			}
