@@ -194,9 +194,20 @@ function generatemask(title, outfile) {
 	print("Generating Binary");
 	selectWindow("C1-");
 	setOption("BlackBackground", false);
+
+	/*
 	run("Make Binary", "method=Triangle background=Default calculate black");
 	run("Options...", "iterations=1 count=1 black do=Nothing");
 	run("Fill Holes", "stack");
+    */
+
+    // this version reduces noise in the mask, by using the Gaussian Blur and a substract Background, which takes
+    // away residual dots, leaving only the main structure
+    run("Gaussian Blur...", "sigma=5 stack");
+	run("Make Binary", "method=Triangle background=Default calculate black");
+	run("Subtract Background...", "rolling=20 create stack");
+	run("Make Binary", "method=Triangle background=Default calculate black");
+	run("Options...", "iterations=1 count=1 black do=Nothing");
 
 	Stack.getDimensions(width, height, channels, slices, frames)
 	print("Applying the mask on the second Channel");
