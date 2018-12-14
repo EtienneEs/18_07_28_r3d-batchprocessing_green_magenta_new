@@ -15,11 +15,13 @@
 
 // settings for moviemaker
 // Colors of the Channels
-colors = newArray("Green", "Magenta", "Red");
+colors = newArray("Green", "Magenta", "Magenta");
 // if manuelc = "manuel", the user has to put the brightnes & contrast manually.
 manuelc = "no";
 // Defines which channels are active in the composite (1 == active, 0== inactive).
 composite_channels = "101"
+// No
+setBatchMode(true);
 
 // This paragraph checks, if a logfile already exists and deletes it
 logfile= "V:/Python_Log.txt"
@@ -72,6 +74,9 @@ function moviemaker(title, outfile, manuelc, colors, composite_channels) {
 	 * 		- determine location of the Scale bar
 	 * 	composite_channels: str "101" which channels are active in the composite: Channel1 and Channel3
 	 */
+	if (manuelc == "manuel") {
+		setBatchMode(false);
+	}
 	selectWindow(title);
 
 	int = Stack.getFrameInterval();
@@ -80,6 +85,11 @@ function moviemaker(title, outfile, manuelc, colors, composite_channels) {
 	rename("MAX_");
 	selectWindow("MAX_");
 	Stack.getDimensions(width, height, channels, slices, frames);
+	if (frames <=1) {
+		print("The file has only one time point and therefore will not be converted into a movie");
+		return;
+	}
+
 	for (i = 0; i < channels; i++) {
 		//print("Channelcolor: " + colors[i]);
 		Stack.setChannel(i+1);
@@ -204,7 +214,7 @@ function generatemask(title, outfile) {
     // this version reduces noise in the mask, by using the Gaussian Blur and a substract Background, which takes
     // away residual dots, leaving only the main structure
     run("Gaussian Blur...", "sigma=5 stack");
-	run("Make Binary", "method=Triangle background=Default calculate black");
+	//run("Make Binary", "method=Triangle background=Default calculate black");
 	run("Subtract Background...", "rolling=20 create stack");
 	run("Make Binary", "method=Triangle background=Default calculate black");
 	run("Options...", "iterations=1 count=1 black do=Nothing");
@@ -277,7 +287,7 @@ function converter(infiletype, outfiletype, dir1, dir2, movie) {
 	            setBatchMode(true);
 	            print("Generating a mask of the 1. Channel");
 	            generatemask(title_o, outFile+tgt_suffix);
-	            setBatchMode(false);
+	            //setBatchMode(false);
 	            if (movie == "yes") {
 
 	            	print("Generating an exciting splitview movie");
