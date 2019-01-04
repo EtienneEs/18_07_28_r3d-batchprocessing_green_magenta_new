@@ -54,7 +54,7 @@ for (i=0; i<list.length; i++) {
             selectImage(k+1);
             all[k] = getImageID;
             title=getTitle();
-			//h0=File.nameWithoutExtension;
+			getDimensions(width, height, channels, slices, frames_o);
 			int = Stack.getFrameInterval();
 			//print("The stack-frame interval is " + int +" seconds");
 			run("Z Project...", "projection=[Max Intensity] all");
@@ -104,9 +104,11 @@ for (i=0; i<list.length; i++) {
 			run("RGB Color");
 			selectWindow(title_duplicate);
 			run("RGB Color", "frames");
+			RGB_title_duplicate = getTitle();
 			run("Combine...", "stack1=["+ lista +"] stack2=["+ listb +"]");
 			f="Combined Stacks";
-			run("Combine...", "stack1=["+ title_duplicate +"] stack2=["+ f +"]");
+			run("Combine...", "stack1=["+ RGB_title_duplicate +"] stack2=["+ f +"]");
+
 			//z=getNumber("What is the Time Interval of"+title_max+" ?", int);
 			z = int;
 			run("Label...", "format=00:00:00 starting=0 interval="+z+" x=10 y=25 font=18");
@@ -146,8 +148,15 @@ for (i=0; i<list.length; i++) {
             	run("Bio-Formats Exporter", "save=[" + outFile2 + "]");
             }
 
-    		print("Saving of " + outFile +".avi");
-    		run("AVI... ", "compression=JPEG frame=3 save=["+ outFile +".avi]");
+
+    		if (frames_o == 1) {
+    			print("Saving of " + outFile +".ome.tif");
+    			run("Bio-Formats Exporter", "save=["+ outFile +".ome.tif]");
+    		} else {
+    			print("Saving of " + outFile +".avi");
+    			run("AVI... ", "compression=JPEG frame=3 save=["+ outFile +".avi]");
+    		}
+
             print("Done");
             run("Close All");
     	}
