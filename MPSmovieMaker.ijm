@@ -4,13 +4,11 @@
 // @String (label="Save an additional output-file besides the avi file ?", choices={"No","ICS-1","ICS-2","OME-TIFF", "CellH5"}) outfiletype
 // @String (label="auto processing ?",choices={"auto", "manuel"}) manuelc
 
-
 // -------------------------------------------------------------------------------
 // This is a batch-processing script, it opens Bio-formats supported files, allows rotation
 // and exports the result in a Bio-formats-supported file and an .avi file.
 // This script was written by Etienne Schmelzer with support by Gordian Born and Kai Schleicher.
 // -------------------------------------------------------------------------------
-
 
 input= dir1+"\\"
 output=dir2+"\\"
@@ -30,11 +28,7 @@ if (outfiletype == "ICS-1") {
 } else if (outfiletype == "CellH5") {
     tgt_suffix = ".ch5";
 }
-
 list = getFileList(dir1);
-
-//setBatchMode(true);
-
 for (i=0; i<list.length; i++) {
     // only open an image with the requested extension:
     if(endsWith(list[i], infiletype)){
@@ -123,12 +117,7 @@ for (i=0; i<list.length; i++) {
 				getDimensions(width, height, channels, slices, frames);
 				makeRectangle((width/3.6), (height-50), 10, 10);
 			}
-
-
-
-
 			run("Scale Bar...", "width=5 height=4 font=14 color=White background=None location=[At Selection] overlay");
-
 
 			if (manuelc == "manuel") {
 				waitForUser("Press OK to save");
@@ -147,8 +136,6 @@ for (i=0; i<list.length; i++) {
             	print("Saving of " + outFile2);
             	run("Bio-Formats Exporter", "save=[" + outFile2 + "]");
             }
-
-
     		if (frames_o == 1) {
     			print("Saving of " + outFile +".ome.tif");
     			run("Bio-Formats Exporter", "save=["+ outFile +".ome.tif]");
@@ -156,11 +143,9 @@ for (i=0; i<list.length; i++) {
     			print("Saving of " + outFile +".avi");
     			run("AVI... ", "compression=JPEG frame=3 save=["+ outFile +".avi]");
     		}
-
             print("Done");
             run("Close All");
     	}
-
         run("Close All");
     }
 }
