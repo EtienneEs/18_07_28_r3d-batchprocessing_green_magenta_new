@@ -5,21 +5,27 @@
 // @String (label="Stitchmode?",choices={"Grid", "inLine"}) opt
 
 batch = "yes";
+infiletype = ".lif";
 
 //-----------------------------------------------------------------------
-// Problem: Autostitching of the leica software did not function properly.
-// This batch-script allows to stitch multiple tile-scanning .lif image files.
-// It allows the user to choose a source directory containing the .lif files and
-// a destination directory, where the stitched images will be saved. It further
-// allows the user to specify the input file format and the output file format.
-// The script will open the Image file, stitch the tile scans either
-// using the Grid/Collection plugin or by in line pairwise stiching one by one.
-// !NOTE inLine pairwise stitching will only work for tile scanns acquired in line!
-// The Grid/Collection plugin and pairwise stitching plugin were written by
-// Preibisch et al. 2009. Once the image file was stitched it will be saved
-// in the specified file format and the next .lif file will be processed.
+//  The script allows to stitch multiple tile-scanning .lif files in batch.
+//  It allows the user to choose a source directory containing the .lif files and a destination directory, where
+//  the final, stitched images will be saved. It further allows the user to specify the output file format and
+//  select between two stitching options:
 //
-// This script was written for Daniel Heutschi by Etienne Schmelzer.
+//  Options:
+//
+//  - Grid: will use the Grid/Collection stitching based on the metadata of the file. The plugin has been written by
+//  Preibisch et al., Bioinformatics (2009).
+//
+//  - inLine: will use Pairwise stitching(plugin written by Preibisch et al., Bioinformatics (2009)) and stitch the
+//  single tiles with each other one by one.
+//  !Note: This function has been written only for tiles acquired in line!
+//
+//  The stitched image is further saved in the specified destination folder in the specified file format. The script
+//  further continues to stitch all .lif files in the specified Input folder.
+//
+//  This script was written for Daniel Heutschi by Etienne Schmelzer
 //------------------------------------------------------------------------
 
 
