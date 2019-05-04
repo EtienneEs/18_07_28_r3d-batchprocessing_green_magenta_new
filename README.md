@@ -1,7 +1,7 @@
 # The-FIJI-Collection
 
-This Repository contains multiple [Fiji][w1] scripts, which facilitate and automates various image processing steps.
-All scripts were written in the [Fiji][w1] macro language
+This Repository contains multiple [Fiji][w1] scripts, which facilitate and automate various image processing steps.
+All scripts were written in the [Fiji][w1] macro language.
 
 1. [autostitcher](#autostitcher) _written for Daniel Heutschi_
 2. [multicrop.ijm](#multicrop) _written for Benjamin Sellner_
@@ -42,7 +42,7 @@ continues to stitch all .lif files in the specified Input folder.
 <a name="multicrop"></a>
 
 ## multicrop.ijm
-This script [multicrop.ijm][2]was written for Benjamin Sellner.
+This script [multicrop.ijm][2] was written for Benjamin Sellner.
 
 __Input__: any image supported by FIJI.  
 __Problem__: The Image needs to be divided in multiple subimages e.g. 20x20 images.  
