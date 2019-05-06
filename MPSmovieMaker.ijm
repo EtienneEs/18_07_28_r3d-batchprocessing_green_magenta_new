@@ -18,9 +18,13 @@
 //colors = newArray("Green", "Magenta", "Red");
 colors = newArray("Green", "Magenta", "Magenta");
 
+// Colors of the Timestamp (white)
+setForegroundColor(255, 255, 255);
+
 movie = "yes";
 // Defines which channels are active in the composite (1 == active, 0== inactive).
-composite_channels = "101"
+composite_channels = "11"
+
 
 // This paragraph checks, if a logfile already exists and deletes it
 logfile= "V:/Python_Log.txt"
@@ -90,6 +94,7 @@ function moviemaker(title, outfile, manuelc, colors, composite_channels) {
 
 	};
 	Stack.setDisplayMode("composite");
+	Stack.setActiveChannels(composite_channels);
 
 	// if processing the data by hand -> the image can be cropped
 	if (manuelc == "manuel") {
@@ -144,6 +149,7 @@ function moviemaker(title, outfile, manuelc, colors, composite_channels) {
 
 	//z=getNumber("What is the Time Interval of"+title_max+" ?", int);
 	z = int;
+
 	run("Label...", "format=00:00:00 starting=0 interval="+z+" x=10 y=25 font=18");
 
 	selectWindow("Combined Stacks");
@@ -155,7 +161,7 @@ function moviemaker(title, outfile, manuelc, colors, composite_channels) {
 		waitForUser("mark where to enter scale bar");
 	}
 
-	run("Scale Bar...", "width=5 height=4 font=14 color=Black background=None location=[At Selection] overlay");
+	run("Scale Bar...", "width=5 height=4 font=14 color=White background=None location=[At Selection] overlay");
 
 	if (manuelc == "manuel") {
 		waitForUser("Press OK to save");
